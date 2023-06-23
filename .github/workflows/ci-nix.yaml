@@ -315,7 +315,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: hydra-spec
-        path: docs/docs/
+        path: docs/static
 
     - name: 📥 Download haddock documentation
       uses: actions/download-artifact@v3
