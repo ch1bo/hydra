@@ -125,8 +125,14 @@ jobs:
       run: |
         cd docs
         sed -i 's/versioned = false/versioned = true/' docusaurus.config.js
-        # TODO: remove debugging
-        git diff
+
+    # TODO: remove debugging
+    - run: |
+        git status --porcelain
+        find .
+
+    - run: |
+        cd docs
         yarn build
 
     # NOTE: We only do this after the build as html pages cannot be easily
