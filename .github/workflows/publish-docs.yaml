@@ -24,42 +24,29 @@ jobs:
         # Also ensure we have all history with all tags
         fetch-depth: 0
 
-    - name: 📥 Download released benchmarks/haddocks
+    - name: 📥 Download released benchmarks
       uses: dawidd6/action-download-artifact@v2
       with:
         repo: input-output-hk/hydra
         workflow: ci.yaml
         workflow_conclusion: success
-        branch: release
-        name: benchmarks-and-haddocks
-        path: benchmarks-and-haddocks
+        # TODO: use this instead
+        # branch: release
+        branch: master
+        name: benchmarks
+        path: docs/docs/benchmarks
 
-    # TODO: Use the downloads below instead of the this after we have released a
-    # version with new artifact names
-    - name: Extract old released benchmarks/haddocks
-      run: |
-        mv benchmarks-and-haddocks/benchmarks docs/docs/
-        mv benchmarks-and-haddocks/static/haddock docs/static/
-
-    # - name: 📥 Download released benchmarks
-    #   uses: dawidd6/action-download-artifact@v2
-    #   with:
-    #     repo: input-output-hk/hydra
-    #     workflow: ci-nix.yaml
-    #     workflow_conclusion: success
-    #     branch: release
-    #     name: benchmarks
-    #     path: docs/docs/benchmarks
-
-    # - name: 📥 Download released haddock documentation
-    #   uses: dawidd6/action-download-artifact@v2
-    #   with:
-    #     repo: input-output-hk/hydra
-    #     workflow: ci-nix.yaml
-    #     workflow_conclusion: success
-    #     branch: release
-    #     name: haddocks
-    #     path: docs/static/haddock
+    - name: 📥 Download released haddock documentation
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        repo: input-output-hk/hydra
+        workflow: ci.yaml
+        workflow_conclusion: success
+        # TODO: use this instead
+        # branch: release
+        branch: master
+        name: haddocks
+        path: docs/static/haddock
 
     - name: 📥 Download released hydra-spec
       uses: dawidd6/action-download-artifact@v2
@@ -67,7 +54,9 @@ jobs:
         repo: input-output-hk/hydra
         workflow: ci.yaml
         workflow_conclusion: success
-        branch: release
+        # TODO: use this instead
+        # branch: release
+        branch: master
         name: hydra-spec
         path: docs/static
 
@@ -77,7 +66,9 @@ jobs:
         repo: input-output-hk/hydra
         workflow: ci.yaml
         workflow_conclusion: success
-        branch: release
+        # TODO: use this instead
+        # branch: release
+        branch: master
         name: test-results
         path: docs/docs/benchmarks/tests
 
