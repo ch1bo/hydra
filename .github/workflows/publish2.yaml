@@ -2,6 +2,10 @@ name: "Publish Docs (new)"
 
 on:
   workflow_dispatch:
+  # TODO: remove this
+  push:
+    branches:
+    - master
 
 jobs:
   publish-docs:
@@ -17,7 +21,9 @@ jobs:
         # Also ensure we have all history with all tags
         fetch-depth: 0
 
-    - run: git describe HEAD
+    - run: |
+        git fetch --prune --unshallow
+        git describe HEAD
 
     - name: 📥 Download released benchmarks/haddocks
       uses: dawidd6/action-download-artifact@v2
