@@ -80,7 +80,11 @@ jobs:
 
     - name: Checkout master
       run: |
-        git checkout master
+        cd docs
+        # Remove all git indexed files in case some files were moved between versions
+        git ls-tree HEAD | xargs rm -rf
+        git switch master
+        git checkout -- .
 
     - name: 📥 Download latest hydra-spec
       uses: dawidd6/action-download-artifact@v2
