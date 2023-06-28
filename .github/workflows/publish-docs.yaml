@@ -19,7 +19,6 @@ jobs:
     - name: 📥 Checkout repository
       uses: actions/checkout@v3
       with:
-        repository: input-output-hk/hydra
         ref: release
         # Also ensure we have all history with all tags
         fetch-depth: 0
@@ -78,12 +77,12 @@ jobs:
         yarn
         ./node_modules/.bin/docusaurus docs:version $(git describe HEAD)
 
-    - name: Checkout master
+    - name: Checkout latest docs
       run: |
         cd docs
         # Remove all git indexed files in case some files were moved between versions
         git ls-tree HEAD | xargs rm -rf
-        git switch master
+        git switch ${{ github.ref_name }} # TODO use master
         git checkout -- .
 
     - name: 📥 Download latest hydra-spec
