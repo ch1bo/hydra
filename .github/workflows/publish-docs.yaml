@@ -116,6 +116,7 @@ jobs:
       run: |
         cd docs
         sed -i 's/versioned = false/versioned = true/' docusaurus.config.js
+        cat docusaurus.config.js
 
     # TODO: remove debugging
     - run: |
