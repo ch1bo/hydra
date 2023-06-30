@@ -1,17 +1,14 @@
 name: "Publish Docs"
 
 on:
-  workflow_run:
-    workflows: ["CI"]
-    branches: [master]
-    types:
-      - completed
+  push:
+    branches:
+      - ch1bo/move-website-build
 
 jobs:
   publishing:
     name: Publish Documentation
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
 
     - name: 📥 Checkout repository
